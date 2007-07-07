@@ -1,6 +1,6 @@
 %define name    kino
 %define version 1.0.0
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: 	GNOME DV-editing utility
 Name: 		%{name}
