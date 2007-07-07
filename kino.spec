@@ -79,6 +79,8 @@ desktop-file-install --vendor="" \
   --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 # fix kino2raw symlink
+# Note that this is fixed in upstream CVS: should be fixed in releases
+# 1.0.1 and later - AdamW 2007/07
 ln -sf kino ${RPM_BUILD_ROOT}%{_bindir}/kino2raw
  
 %post
