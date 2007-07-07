@@ -70,26 +70,16 @@ rm -rf %{buildroot}%{_sysconfdir}/hotplug/ %{buildroot}%{_libdir}/hotplug
 
 %find_lang %{name}
 
-mkdir -p %{buildroot}%{_menudir}
-cat > %{buildroot}%{_menudir}/%{name} <<EOF
-?package(%{name}):\
-command="kino"\
-title="Kino"\
-longtitle="Video editor for DV format"\
-needs="x11"\
-icon="video_section.png"\
-section="Multimedia/Video"\
-xdg="true"
-EOF
-
 desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="GNOME" \
   --add-category="GTK" \
   --add-category="Video" \
   --add-category="Recorder" \
-  --add-category="X-MandrivaLinux-Multimedia-Video" \
   --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
+
+# fix kino2raw symlink
+ln -sf kino ${RPM_BUILD_ROOT}%{_bindir}/kino2raw
  
 %post
 %update_menus
@@ -107,7 +97,6 @@ rm -rf %{buildroot}
 %doc AUTHORS BUGS ChangeLog NEWS README* TODO
 %{_sysconfdir}/udev/rules.d/kino.rules
 %{_bindir}/*
-%{_menudir}/*
 %{_datadir}/mime/packages/kino.xml
 %{_mandir}/man1/*
 %{_datadir}/kino/
