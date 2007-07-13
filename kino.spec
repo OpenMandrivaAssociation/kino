@@ -34,7 +34,7 @@ BuildRequires:	libxv-devel
 BuildRequires:	perl-XML-Parser
 BuildRequires:	desktop-file-utils
 %if %cvs
-BuildRequires:	autoconf
+BuildRequires:	autoconf intltool
 %endif
 Requires:	udev
 Requires:	mjpegtools
