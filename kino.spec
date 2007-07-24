@@ -1,6 +1,6 @@
 %define name    kino
 %define version 1.1.0
-%define cvs	%nil
+%define cvs	0
 %if %cvs
 %define release %mkrel 0.%cvs.1
 %else
