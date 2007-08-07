@@ -1,5 +1,5 @@
 %define name    kino
-%define version 1.1.0
+%define version 1.1.1
 %define cvs	0
 %if %cvs
 %define release %mkrel 0.%cvs.1
@@ -128,5 +128,3 @@ rm -rf %{buildroot}
 %files devel
 %defattr(-,root,root)
 %{_includedir}/%{name}
-
-
