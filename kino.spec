@@ -19,6 +19,7 @@ Source0: 	http://prdownloads.sf.net/kino/%{name}-%{version}.tar.bz2
 URL: 		http://www.kinodv.org/
 License: 	GPL
 Group: 		Video
+BuildRoot: 	%{_tmppath}/%{name}-buildroot
 BuildRequires:	a52dec-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	libavc1394-devel
