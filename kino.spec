@@ -16,6 +16,7 @@ Source0:	%{name}-%{cvs}.tar.bz2
 %else
 Source0: 	http://prdownloads.sf.net/kino/%{name}-%{version}.tar.bz2
 %endif
+Patch0:		kino-1.2.0-fix-desktop-file.patch
 URL: 		http://www.kinodv.org/
 License: 	GPL
 Group: 		Video
@@ -73,6 +74,7 @@ This contains the C++ headers needed to build extensions for kino.
 %else
 %setup -q
 %endif
+%patch0 -p0
 
 %build
 %if %cvs
@@ -88,14 +90,6 @@ mkdir -p %{buildroot}%{_bindir}
 rm -rf %{buildroot}%{_sysconfdir}/hotplug/ %{buildroot}%{_libdir}/hotplug
 
 %find_lang %{name}
-
-desktop-file-install --vendor="" \
-  --remove-category="Application" \
-  --add-category="GNOME" \
-  --add-category="GTK" \
-  --add-category="Video" \
-  --add-category="Recorder" \
-  --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 # fix kino2raw symlink
 # Note that this is fixed in upstream CVS: should be fixed in releases
