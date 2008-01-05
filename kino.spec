@@ -1,15 +1,13 @@
-%define name    kino
-%define version 1.2.0
 %define cvs	0
 %if %cvs
 %define release %mkrel 0.%cvs.1
 %else
-%define release %mkrel 1
+%define release %mkrel 2
 %endif
 
 Summary: 	GNOME DV-editing utility
-Name: 		%{name}
-Version:	%{version}
+Name: 		kino
+Version:	1.2.0
 Release: 	%{release}
 %if %cvs
 Source0:	%{name}-%{cvs}.tar.bz2
@@ -18,7 +16,7 @@ Source0: 	http://prdownloads.sf.net/kino/%{name}-%{version}.tar.bz2
 %endif
 Patch0:		kino-1.2.0-fix-desktop-file.patch
 URL: 		http://www.kinodv.org/
-License: 	GPL
+License: 	GPLv2+
 Group: 		Video
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 BuildRequires:	a52dec-devel
@@ -34,6 +32,7 @@ BuildRequires:	libsamplerate-devel
 BuildRequires:	libxv-devel
 BuildRequires:	perl-XML-Parser
 BuildRequires:	desktop-file-utils
+BuildRequires:	ImageMagick
 %if %cvs
 BuildRequires:	autoconf intltool
 %endif
@@ -87,21 +86,29 @@ This contains the C++ headers needed to build extensions for kino.
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_bindir}
 %makeinstall_std
+
 rm -rf %{buildroot}%{_sysconfdir}/hotplug/ %{buildroot}%{_libdir}/hotplug
+
+mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48}/apps
+install -m 644 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+convert -scale 32 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+convert -scale 16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
 
 %find_lang %{name}
 
 # fix kino2raw symlink
 # Note that this is fixed in upstream CVS: should be fixed in releases
 # 1.0.1 and later - AdamW 2007/07
-ln -sf kino ${RPM_BUILD_ROOT}%{_bindir}/kino2raw
+#ln -sf kino ${RPM_BUILD_ROOT}%{_bindir}/kino2raw
  
 %post
-%update_menus
+%{update_menus}
+%{update_icon_cache hicolor}
 update-mime-database %{_datadir}/mime > /dev/null
 
 %postun
-%update_menus 
+%{clean_menus}
+%{clean_icon_cache hicolor}
 update-mime-database %{_datadir}/mime > /dev/null
 
 %clean
@@ -116,6 +123,7 @@ rm -rf %{buildroot}
 %{_mandir}/man1/*
 %{_datadir}/kino/
 %{_datadir}/pixmaps/*
+%{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_datadir}/applications/*
 %{_libdir}/kino-gtk2/
 
