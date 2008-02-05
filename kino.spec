@@ -2,7 +2,7 @@
 %if %cvs
 %define release %mkrel 0.%cvs.1
 %else
-%define release %mkrel 3
+%define release %mkrel 4
 %endif
 
 Summary: 	GNOME DV-editing utility
@@ -15,9 +15,9 @@ Source0:	%{name}-%{cvs}.tar.bz2
 Source0: 	http://prdownloads.sf.net/kino/%{name}-%{version}.tar.bz2
 %endif
 Patch0:		kino-1.2.0-fix-desktop-file.patch
-# Don't use -f and -F options for yuvdeinterlace and yuvdenoise as
-# they don't exist in our mjpegtools (#36533) - AdamW 2008/01
-Patch1:		kino-1.2.0-mjpegopts.patch
+# Fix up change in the names given to ffmpeg MP3 encoder (#37467)
+# - AdamW 2008/02
+Patch1:		kino-1.2.0-ffmpeg.patch
 URL: 		http://www.kinodv.org/
 License: 	GPLv2+
 Group: 		Video
@@ -77,9 +77,12 @@ This contains the C++ headers needed to build extensions for kino.
 %setup -q
 %endif
 %patch0 -p0
-%patch1 -p1 -b .mjpegopts
+%patch1 -p1 -b .ffmpeg
 
 %build
+# More ffmpeg encoder name changes
+sed -i -e 's,vcodec h264,vcodec libx264,g' scripts/exports/*
+sed -i -e 's,acodec mp3,acodec libmp3lame,g' scripts/exports/ffmpeg_mp3.sh
 %if %cvs
 ./autogen.sh
 %endif
