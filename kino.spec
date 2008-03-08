@@ -2,7 +2,7 @@
 %if %cvs
 %define release %mkrel 0.%cvs.1
 %else
-%define release %mkrel 4
+%define release %mkrel 5
 %endif
 
 Summary: 	GNOME DV-editing utility
@@ -77,12 +77,16 @@ This contains the C++ headers needed to build extensions for kino.
 %setup -q
 %endif
 %patch0 -p0
+%if %{mdkversion} >= 200810
 %patch1 -p1 -b .ffmpeg
+%endif
 
 %build
+%if %{mdkversion} >= 200810
 # More ffmpeg encoder name changes
 sed -i -e 's,vcodec h264,vcodec libx264,g' scripts/exports/*
 sed -i -e 's,acodec mp3,acodec libmp3lame,g' scripts/exports/ffmpeg_mp3.sh
+%endif
 %if %cvs
 ./autogen.sh
 %endif
