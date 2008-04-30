@@ -17,7 +17,7 @@ Source0: 	http://prdownloads.sf.net/kino/%{name}-%{version}.tar.gz
 Patch0:		kino-1.2.0-fix-desktop-file.patch
 # Fix up change in the names given to ffmpeg MP3 encoder (#37467)
 # - AdamW 2008/02
-Patch1:		kino-1.2.0-ffmpeg.patch
+Patch1:		kino-1.3.0-ffmpeg.patch
 URL: 		http://www.kinodv.org/
 License: 	GPLv2+
 Group: 		Video
