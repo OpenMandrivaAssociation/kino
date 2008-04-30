@@ -90,6 +90,7 @@ sed -i -e 's,acodec mp3,acodec libmp3lame,g' scripts/exports/ffmpeg_mp3.sh
 %if %cvs
 ./autogen.sh
 %endif
+export CPPFLAGS="%{optflags} -I%{_includedir}/libavcodec -I%{_includedir}/libavdevice -I%{_includedir}/libavformat -I%{_includedir}/libavcodec -I%{_includedir}/libpostproc -I%{_includedir}/libswscale"
 %configure2_5x	--with-quicktime --disable-local-ffmpeg
 %make
 
