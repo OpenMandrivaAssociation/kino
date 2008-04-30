@@ -2,17 +2,17 @@
 %if %cvs
 %define release %mkrel 0.%cvs.1
 %else
-%define release %mkrel 5
+%define release %mkrel 1
 %endif
 
 Summary: 	GNOME DV-editing utility
 Name: 		kino
-Version:	1.2.0
+Version:	1.3.0
 Release: 	%{release}
 %if %cvs
 Source0:	%{name}-%{cvs}.tar.bz2
 %else
-Source0: 	http://prdownloads.sf.net/kino/%{name}-%{version}.tar.bz2
+Source0: 	http://prdownloads.sf.net/kino/%{name}-%{version}.tar.gz
 %endif
 Patch0:		kino-1.2.0-fix-desktop-file.patch
 # Fix up change in the names given to ffmpeg MP3 encoder (#37467)
