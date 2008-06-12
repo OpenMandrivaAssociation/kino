@@ -114,13 +114,17 @@ convert -scale 16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x16/app
 #ln -sf kino ${RPM_BUILD_ROOT}%{_bindir}/kino2raw
  
 %post
+%if %mdkversion < 200900
 %{update_menus}
 %{update_icon_cache hicolor}
+%endif
 update-mime-database %{_datadir}/mime > /dev/null
 
 %postun
+%if %mdkversion < 200900
 %{clean_menus}
 %{clean_icon_cache hicolor}
+%endif
 update-mime-database %{_datadir}/mime > /dev/null
 
 %clean
