@@ -2,12 +2,12 @@
 %if %cvs
 %define release %mkrel 2.%cvs.1
 %else
-%define release %mkrel 2
+%define release %mkrel 1
 %endif
 
 Summary: 	GNOME DV-editing utility
 Name: 		kino
-Version:	1.3.0
+Version:	1.3.1
 Release: 	%{release}
 %if %cvs
 Source0:	%{name}-%{cvs}.tar.bz2
