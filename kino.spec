@@ -35,9 +35,10 @@ BuildRequires:	libsamplerate-devel
 BuildRequires:	libxv-devel
 BuildRequires:	perl-XML-Parser
 BuildRequires:	desktop-file-utils
+BuildRequires:	intltool
 BuildRequires:	ImageMagick
 %if %cvs
-BuildRequires:	autoconf intltool
+BuildRequires:	autoconf
 %endif
 Requires:	udev
 Requires:	mjpegtools
