@@ -7,7 +7,7 @@
 
 Summary: 	GNOME DV-editing utility
 Name: 		kino
-Version:	1.3.1
+Version:	1.3.2
 Release: 	%{release}
 %if %cvs
 Source0:	%{name}-%{cvs}.tar.bz2
