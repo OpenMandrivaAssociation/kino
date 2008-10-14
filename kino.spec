@@ -1,19 +1,22 @@
+%define rel	2
 %define cvs	0
 %if %cvs
-%define release %mkrel 2.%cvs.1
+%define release		%mkrel 0.%{cvs}.%{rel}
+%define distname	%{name}-%{cvs}.tar.lzma
+%define dirname		%{name}
 %else
-%define release %mkrel 1
+%define release		%mkrel %{rel}
+%define distname	%{name}-%{version}.tar.gz
+%define dirname		%{name}-%{version}
 %endif
 
 Summary: 	GNOME DV-editing utility
 Name: 		kino
 Version:	1.3.2
 Release: 	%{release}
-%if %cvs
+Epoch:		2
 Source0:	%{name}-%{cvs}.tar.bz2
-%else
-Source0: 	http://prdownloads.sf.net/kino/%{name}-%{version}.tar.gz
-%endif
+Source0: 	http://downloads.sourgeforge.net/%{name}/%{distname}
 Patch0:		kino-1.2.0-fix-desktop-file.patch
 # Fix up change in the names given to ffmpeg MP3 encoder (#37467)
 # - AdamW 2008/02
@@ -42,15 +45,12 @@ BuildRequires:	autoconf
 %endif
 Requires:	udev
 Requires:	mjpegtools
-Requires(post):	shared-mime-info
-Requires(postun):	shared-mime-info
-
 #gw needed by the scripts in /usr/share/kino/scripts
 Requires:	ffmpeg
 #it needs rawplay
 Requires:	smilutils
-BuildRequires:	libffmpeg-devel
-Epoch:		2
+Requires(post):		shared-mime-info
+Requires(postun):	shared-mime-info
 
 %description
 The new generation of digital camcorders use the Digital Video (DV) data
@@ -72,11 +72,7 @@ Requires:	libffmpeg-devel
 This contains the C++ headers needed to build extensions for kino.
 
 %prep
-%if %cvs
-%setup -q -n %{name}
-%else
-%setup -q
-%endif
+%setup -q -n %{dirname}
 %patch0 -p0
 %if %{mdkversion} >= 200810
 %patch1 -p1 -b .ffmpeg
@@ -109,11 +105,6 @@ convert -scale 16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x16/app
 
 %find_lang %{name}
 
-# fix kino2raw symlink
-# Note that this is fixed in upstream CVS: should be fixed in releases
-# 1.0.1 and later - AdamW 2007/07
-#ln -sf kino ${RPM_BUILD_ROOT}%{_bindir}/kino2raw
- 
 %post
 %if %mdkversion < 200900
 %{update_menus}
@@ -147,3 +138,4 @@ rm -rf %{buildroot}
 %files devel
 %defattr(-,root,root)
 %{_includedir}/%{name}
+
