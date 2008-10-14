@@ -15,7 +15,6 @@ Name: 		kino
 Version:	1.3.2
 Release: 	%{release}
 Epoch:		2
-Source0:	%{name}-%{cvs}.tar.bz2
 Source0: 	http://downloads.sourgeforge.net/%{name}/%{distname}
 Patch0:		kino-1.2.0-fix-desktop-file.patch
 # Fix up change in the names given to ffmpeg MP3 encoder (#37467)
