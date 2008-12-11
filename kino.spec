@@ -38,7 +38,7 @@ BuildRequires:	libxv-devel
 BuildRequires:	perl-XML-Parser
 BuildRequires:	desktop-file-utils
 BuildRequires:	intltool
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 %if %cvs
 BuildRequires:	autoconf
 %endif
