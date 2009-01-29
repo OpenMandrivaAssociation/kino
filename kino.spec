@@ -1,4 +1,4 @@
-%define rel	4
+%define rel	1
 %define cvs	0
 %if %cvs
 %define release		%mkrel 0.%{cvs}.%{rel}
@@ -12,7 +12,7 @@
 
 Summary: 	GNOME DV-editing utility
 Name: 		kino
-Version:	1.3.2
+Version:	1.3.3
 Release: 	%{release}
 Epoch:		2
 Source0: 	http://downloads.sourgeforge.net/%{name}/%{distname}
