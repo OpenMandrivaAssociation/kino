@@ -1,4 +1,4 @@
-%define rel	1
+%define rel	2
 %define cvs	0
 %if %cvs
 %define release		%mkrel 0.%{cvs}.%{rel}
@@ -17,9 +17,6 @@ Release: 	%{release}
 Epoch:		2
 Source0: 	http://downloads.sourgeforge.net/%{name}/%{distname}
 Patch0:		kino-1.2.0-fix-desktop-file.patch
-# Fix up change in the names given to ffmpeg MP3 encoder (#37467)
-# - AdamW 2008/02
-Patch1:		kino-1.3.0-ffmpeg.patch
 Patch2:		kino-1.3.2-fix-str-fmt.patch
 URL: 		http://www.kinodv.org/
 License: 	GPLv2+
@@ -74,9 +71,6 @@ This contains the C++ headers needed to build extensions for kino.
 %prep
 %setup -q -n %{dirname}
 %patch0 -p0
-%if %{mdkversion} >= 200810
-%patch1 -p1 -b .ffmpeg
-%endif
 %patch2 -p0
 
 %build
