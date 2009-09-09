@@ -12,11 +12,11 @@
 
 Summary: 	GNOME DV-editing utility
 Name: 		kino
-Version:	1.3.3
+Version:	1.3.4
 Release: 	%{release}
 Epoch:		2
 Source0: 	http://downloads.sourgeforge.net/%{name}/%{distname}
-Patch0:		kino-1.2.0-fix-desktop-file.patch
+Patch0:		kino-1.3.4-fix-desktop-file.patch
 Patch2:		kino-1.3.2-fix-str-fmt.patch
 URL: 		http://www.kinodv.org/
 License: 	GPLv2+
