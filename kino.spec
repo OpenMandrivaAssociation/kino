@@ -1,4 +1,4 @@
-%define rel	3
+%define rel	4
 %define cvs	0
 %if %cvs
 %define release		%mkrel 0.%{cvs}.%{rel}
@@ -18,6 +18,7 @@ Epoch:		2
 Source0: 	http://downloads.sourgeforge.net/%{name}/%{distname}
 Patch0:		kino-1.3.4-fix-desktop-file.patch
 Patch2:		kino-1.3.2-fix-str-fmt.patch
+Patch3:		kino-1.3.4-use-soundwrapper.patch
 URL: 		http://www.kinodv.org/
 License: 	GPLv2+
 Group: 		Video
@@ -42,6 +43,7 @@ BuildRequires:	autoconf
 %endif
 Requires:	udev
 Requires:	mjpegtools
+Requires:	soundwrapper
 #gw needed by the scripts in /usr/share/kino/scripts
 Requires:	ffmpeg
 #it needs rawplay
@@ -72,6 +74,7 @@ This contains the C++ headers needed to build extensions for kino.
 %setup -q -n %{dirname}
 %patch0 -p0
 %patch2 -p0
+%patch3 -p1
 
 %build
 %if %{mdkversion} >= 200810
