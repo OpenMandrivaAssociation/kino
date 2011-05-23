@@ -1,22 +1,11 @@
-%define rel	7
-%define cvs	0
-%if %cvs
-%define release		%mkrel 0.%{cvs}.%{rel}
-%define distname	%{name}-%{cvs}.tar.lzma
-%define dirname		%{name}
-%else
-%define release		%mkrel %{rel}
-%define distname	%{name}-%{version}.tar.gz
-%define dirname		%{name}-%{version}
-%endif
-
 Summary: 	GNOME DV-editing utility
 Name: 		kino
 Version:	1.3.4
-Release: 	%{release}
+Release: 	7
 Epoch:		2
-Source0: 	http://downloads.sourgeforge.net/%{name}/%{distname}
+Source0: 	http://downloads.sourgeforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		kino-1.3.4-fix-desktop-file.patch
+Patch1:		kino-1.3.4-videodev.h.patch
 Patch2:		kino-1.3.2-fix-str-fmt.patch
 Patch3:		kino-1.3.4-use-soundwrapper.patch
 URL: 		http://www.kinodv.org/
@@ -34,13 +23,11 @@ BuildRequires:	libiec61883-devel
 BuildRequires:	libquicktime-devel
 BuildRequires:	libsamplerate-devel
 BuildRequires:	libxv-devel
+BuildRequires:	libv4l-devel
 BuildRequires:	perl-XML-Parser
 BuildRequires:	desktop-file-utils
 BuildRequires:	intltool
 BuildRequires:	imagemagick
-%if %cvs
-BuildRequires:	autoconf
-%endif
 Requires:	udev
 Requires:	mjpegtools
 Requires:	soundwrapper
@@ -48,8 +35,6 @@ Requires:	soundwrapper
 Requires:	ffmpeg
 #it needs rawplay
 Requires:	smilutils
-Requires(post):		shared-mime-info
-Requires(postun):	shared-mime-info
 
 %description
 The new generation of digital camcorders use the Digital Video (DV) data
@@ -71,22 +56,18 @@ Requires:	libffmpeg-devel
 This contains the C++ headers needed to build extensions for kino.
 
 %prep
-%setup -q -n %{dirname}
+%setup -qn %{name}-%{version}
 %patch0 -p0
+%patch1 -p0
 %patch2 -p0
 %patch3 -p1
 
 %build
-%if %{mdkversion} >= 200810
 # More ffmpeg encoder name changes
 sed -i -e 's,vcodec h264,vcodec libx264,g' scripts/exports/*
 sed -i -e 's,acodec mp3,acodec libmp3lame,g' scripts/exports/ffmpeg_mp3.sh
-%endif
-%if %cvs
-./autogen.sh
-%endif
-export CPPFLAGS="%{optflags} -I%{_includedir}/libavcodec -I%{_includedir}/libavdevice -I%{_includedir}/libavformat -I%{_includedir}/libavcodec -I%{_includedir}/libpostproc -I%{_includedir}/libswscale"
-%configure2_5x	--with-quicktime --disable-local-ffmpeg
+#export CPPFLAGS="%{optflags} -I%{_includedir}/libavcodec -I%{_includedir}/libavdevice -I%{_includedir}/libavformat -I%{_includedir}/libavcodec -I%{_includedir}/libpostproc -I%{_includedir}/libswscale"
+%configure2_5x	--enable-quicktime --disable-local-ffmpeg
 %make
 
 %install
@@ -102,20 +83,6 @@ convert -scale 32 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/32x32/app
 convert -scale 16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
 
 %find_lang %{name}
-
-%post
-%if %mdkversion < 200900
-%{update_menus}
-%{update_icon_cache hicolor}
-%endif
-update-mime-database %{_datadir}/mime > /dev/null
-
-%postun
-%if %mdkversion < 200900
-%{clean_menus}
-%{clean_icon_cache hicolor}
-%endif
-update-mime-database %{_datadir}/mime > /dev/null
 
 %clean
 rm -rf %{buildroot}
