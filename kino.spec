@@ -1,7 +1,7 @@
 Summary: 	GNOME DV-editing utility
 Name: 		kino
 Version:	1.3.4
-Release: 	7
+Release: 	8
 Epoch:		2
 Source0: 	http://downloads.sourgeforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		kino-1.3.4-fix-desktop-file.patch
