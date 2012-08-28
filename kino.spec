@@ -1,29 +1,32 @@
-Summary: 	GNOME DV-editing utility
+Summary:	GNOME DV-editing utility
 Name: 		kino
 Version:	1.3.4
-Release: 	8
+Release:	9
 Epoch:		2
+License:	GPLv2+
+Group:		Video
+URL:		http://www.kinodv.org/
 Source0: 	http://downloads.sourgeforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		kino-1.3.4-fix-desktop-file.patch
 Patch1:		kino-1.3.4-videodev.h.patch
 Patch2:		kino-1.3.2-fix-str-fmt.patch
 Patch3:		kino-1.3.4-use-soundwrapper.patch
-URL: 		http://www.kinodv.org/
-License: 	GPLv2+
-Group: 		Video
-BuildRoot: 	%{_tmppath}/%{name}-buildroot
+Patch4:		kino-1.3.4-ffmpeg0.8.patch
+Patch5:		kino-1.3.4-libav-0.8.patch
+Patch6:		kino-1.3.4-link.patch
 BuildRequires:	a52dec-devel
-BuildRequires:	alsa-lib-devel
-BuildRequires:	libavc1394-devel
-BuildRequires:	libdv-devel
+BuildRequires:	pkgconfig(alsa)
+BuildRequires:	pkgconfig(libavc1394)
+BuildRequires:	pkgconfig(libdv)
 BuildRequires:	ffmpeg-devel
-BuildRequires:	libglade2.0-devel
-BuildRequires:	libgnomeui2-devel
-BuildRequires:	libiec61883-devel
-BuildRequires:	libquicktime-devel
-BuildRequires:	libsamplerate-devel
-BuildRequires:	libxv-devel
-BuildRequires:	libv4l-devel
+BuildRequires:	pkgconfig(libglade-2.0)
+BuildRequires:	pkgconfig(libgnomeui-2.0)
+BuildRequires:	pkgconfig(libiec61883)
+BuildRequires:	pkgconfig(libquicktime)
+BuildRequires:	pkgconfig(samplerate)
+BuildRequires:	pkgconfig(xv)
+BuildRequires:	pkgconfig(libv4l1)
+BuildRequires:	pkgconfig(libv4l2)
 BuildRequires:	perl-XML-Parser
 BuildRequires:	desktop-file-utils
 BuildRequires:	intltool
@@ -45,24 +48,28 @@ commands for fast navigating and editing inside the movie.
 %package	devel
 Group:		Development/C++
 Summary:	Header files for kino plugin development
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	libsamplerate-devel
-Requires:	libdv-devel
-Requires:	libgnomeui2-devel
-Requires:	libxml2-devel
-Requires:	libffmpeg-devel
+Requires:	%{name} = %{EVRD}
+Requires:	pkgconfig(samplerate)
+Requires:	pkgconfig(libdv)
+Requires:	pkgconfig(libgnomeui-2.0)
+Requires:	pkgconfig(libxml-2.0)
+Requires:	ffmpeg-devel
 
 %description	devel
 This contains the C++ headers needed to build extensions for kino.
 
 %prep
-%setup -qn %{name}-%{version}
+%setup -q
 %patch0 -p0
 %patch1 -p0
 %patch2 -p0
 %patch3 -p1
+%patch4 -p0
+%patch5 -p1
+%patch6 -p0
 
 %build
+autoreconf -fi
 # More ffmpeg encoder name changes
 sed -i -e 's,vcodec h264,vcodec libx264,g' scripts/exports/*
 sed -i -e 's,acodec mp3,acodec libmp3lame,g' scripts/exports/ffmpeg_mp3.sh
@@ -71,7 +78,6 @@ sed -i -e 's,acodec mp3,acodec libmp3lame,g' scripts/exports/ffmpeg_mp3.sh
 %make
 
 %install
-rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_bindir}
 %makeinstall_std
 
@@ -84,11 +90,7 @@ convert -scale 16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x16/app
 
 %find_lang %{name}
 
-%clean
-rm -rf %{buildroot}
-
 %files -f %{name}.lang
-%defattr(-,root,root)
 %doc AUTHORS BUGS ChangeLog NEWS README* TODO
 %{_sysconfdir}/udev/rules.d/kino.rules
 %{_bindir}/*
@@ -101,6 +103,5 @@ rm -rf %{buildroot}
 %{_libdir}/kino-gtk2/
 
 %files devel
-%defattr(-,root,root)
 %{_includedir}/%{name}
 
