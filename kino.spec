@@ -14,6 +14,7 @@ Patch3:		kino-1.3.4-use-soundwrapper.patch
 Patch4:		kino-1.3.4-ffmpeg0.8.patch
 Patch5:		kino-1.3.4-libav-0.8.patch
 Patch6:		kino-1.3.4-link.patch
+Patch7:		kino-automake-1.13.patch
 BuildRequires:	a52dec-devel
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(libavc1394)
@@ -67,6 +68,7 @@ This contains the C++ headers needed to build extensions for kino.
 %patch4 -p0
 %patch5 -p1
 %patch6 -p0
+%patch7 -p1 -b .am13~
 
 %build
 autoreconf -fi
