@@ -1,12 +1,12 @@
-Summary: 	GNOME DV-editing utility
-Name: 		kino
+Summary:	GNOME DV-editing utility
+Name:		kino
 Version:	1.3.4
-Release: 	8
+Release:	9
 Epoch:		2
 License:	GPLv2+
 Group:		Video
 URL:		http://www.kinodv.org/
-Source0: 	http://downloads.sourgeforge.net/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourgeforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		kino-1.3.4-fix-desktop-file.patch
 Patch1:		kino-1.3.4-videodev.h.patch
 Patch2:		kino-1.3.2-fix-str-fmt.patch
@@ -46,7 +46,7 @@ format. Kino allows you to record, create, edit, and play movies recorded
 with DV camcorders. Unlike other editors, this program uses many keyboard
 commands for fast navigating and editing inside the movie.
 
-%package	devel
+%package devel
 Group:		Development/C++
 Summary:	Header files for kino plugin development
 Requires:	%{name} = %{EVRD}
@@ -122,7 +122,7 @@ convert -scale 16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x16/app
 + Revision: 606264
 - rebuild
 
-* Mon Nov 09 2009 Götz Waschk <waschk@mandriva.org> 2:1.3.4-5mdv2010.1
+* Mon Nov 09 2009 GÃ¶tz Waschk <waschk@mandriva.org> 2:1.3.4-5mdv2010.1
 + Revision: 463541
 - rebuild for new ffmpeg
 
@@ -215,7 +215,7 @@ convert -scale 16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x16/app
   + Thierry Vignaud <tv@mandriva.org>
     - kill re-definition of %%buildroot on Pixel's request
 
-  + Giuseppe Ghibò <ghibo@mandriva.com>
+  + Giuseppe GhibÃ² <ghibo@mandriva.com>
     - Release 1.2.0.
 
 * Tue Aug 07 2007 Funda Wang <fwang@mandriva.org> 2:1.1.1-1mdv2008.0
@@ -245,7 +245,7 @@ convert -scale 16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x16/app
 + Revision: 130399
 - rebuild for libgii
 
-* Wed Jan 17 2007 Per Øyvind Karlsen <pkarlsen@mandriva.com> 2:0.9.5-1mdv2007.1
+* Wed Jan 17 2007 Per Ã˜yvind Karlsen <pkarlsen@mandriva.com> 2:0.9.5-1mdv2007.1
 + Revision: 110002
 - add desktop-file-utils to buildrequires
 - build against libffmpeg on all platforms
@@ -258,10 +258,10 @@ convert -scale 16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x16/app
 - add BuildRequires: libdv-devel libiec61883-devel libxv-devel
 - Import kino
 
-* Wed Sep 06 2006 Nicolas L�cureuil <neoclust@mandriva.org> 2:0.9.2-1mdv2007.0
+* Wed Sep 06 2006 Nicolas Lécureuil <neoclust@mandriva.org> 2:0.9.2-1mdv2007.0
 - New version 0.9.2
 
-* Mon Jul 17 2006 Nicolas L�cureuil <neoclust@mandriva.org> 0.8.1-1mdv2007.0
+* Mon Jul 17 2006 Nicolas Lécureuil <neoclust@mandriva.org> 0.8.1-1mdv2007.0
 - XDG
 
 * Thu Apr 20 2006 Stefan van der Eijk <stefan@eijk.nu> 2:0.8.1-3mdk
@@ -289,7 +289,7 @@ convert -scale 16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x16/app
 * Sat Jul 23 2005 Laurent MONTEL <lmontel@mandriva.com> 0.7.6-2mdk
 - Fix build on MDK <= 2006
 
-* Tue May 31 2005 G�tz Waschk <waschk@mandriva.org> 0.7.6-1mdk
+* Tue May 31 2005 Götz Waschk <waschk@mandriva.org> 0.7.6-1mdk
 - update file list
 - patch for new libquicktime
 - new source URL
@@ -301,7 +301,7 @@ convert -scale 16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x16/app
 * Sat Jan 29 2005 Austin Acton <austin@mandrake.org> 0.7.5-2mdk
 - rebuild for libraw1394
 
-* Fri Dec 03 2004 G�tz Waschk <waschk@linux-mandrake.com> 0.7.5-1mdk
+* Fri Dec 03 2004 Götz Waschk <waschk@linux-mandrake.com> 0.7.5-1mdk
 - always define hotplugdir
 - new version
 
@@ -311,7 +311,7 @@ convert -scale 16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x16/app
 * Wed Aug 11 2004 Austin Acton <austin@mandrake.org> 0.7.3-1mdk
 - 0.7.3
 
-* Wed Jul 28 2004 G�tz Waschk <waschk@linux-mandrake.com> 0.7.2-1mdk
+* Wed Jul 28 2004 Götz Waschk <waschk@linux-mandrake.com> 0.7.2-1mdk
 - drop patch 1
 - fix URLs
 - New release 0.7.2
@@ -322,18 +322,18 @@ convert -scale 16 pixmaps/%{name}.png %{buildroot}%{_iconsdir}/hicolor/16x16/app
 * Mon May 24 2004 Austin Acton <austin@mandrake.org> 0.7.1-3mdk
 - requires smilutils
 
-* Fri May 14 2004 G�tz Waschk <waschk@linux-mandrake.com> 0.7.1-2mdk
+* Fri May 14 2004 Götz Waschk <waschk@linux-mandrake.com> 0.7.1-2mdk
 - fix devel deps
 
-* Thu Apr 15 2004 G�tz Waschk <waschk@linux-mandrake.com> 0.7.1-1mdk
+* Thu Apr 15 2004 Götz Waschk <waschk@linux-mandrake.com> 0.7.1-1mdk
 - add hotplug and locale files
 - fix buildrequires
 - fix menu entry
 - new version
 
-* Thu Apr 15 2004 G�tz Waschk <waschk@linux-mandrake.com> 0.7.0-5mdk
+* Thu Apr 15 2004 Götz Waschk <waschk@linux-mandrake.com> 0.7.0-5mdk
 - new version
 
-* Sat Apr 03 2004 G�tz Waschk <waschk@linux-mandrake.com> 0.7.0-5mdk
+* Sat Apr 03 2004 Götz Waschk <waschk@linux-mandrake.com> 0.7.0-5mdk
 - new dv
 
