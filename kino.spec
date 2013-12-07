@@ -2,7 +2,7 @@ Summary:	GNOME DV-editing utility
 Name:		kino
 Epoch:		2
 Version:	1.3.4
-Release:	10
+Release:	11
 License:	GPLv2+
 Group:		Video
 Url:		http://www.kinodv.org/
