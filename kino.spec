@@ -4,7 +4,7 @@ Summary:	GNOME DV-editing utility
 Name:		kino
 Epoch:		2
 Version:	1.3.4
-Release:	69
+Release:	71
 License:	GPLv2+
 Group:		Video
 Url:		http://www.kinodv.org/
@@ -24,7 +24,7 @@ BuildRequires:	intltool
 BuildRequires:	perl-XML-Parser
 BuildRequires:	a52dec-devel
 BuildRequires:	pkgconfig(alsa)
-BuildRequires:	pkgconfig(libavcodec)
+BuildRequires:	pkgconfig(libavcodec) >= 2.5.4
 BuildRequires:	pkgconfig(libavc1394)
 BuildRequires:	pkgconfig(libdv)
 BuildRequires:	pkgconfig(libglade-2.0)
