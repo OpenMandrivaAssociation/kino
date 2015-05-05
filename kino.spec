@@ -1,10 +1,8 @@
-%define distsuffix plf
-
 Summary:	GNOME DV-editing utility
 Name:		kino
 Epoch:		2
 Version:	1.3.4
-Release:	71
+Release:	11
 License:	GPLv2+
 Group:		Video
 Url:		http://www.kinodv.org/
@@ -35,7 +33,6 @@ BuildRequires:	pkgconfig(libv4l1)
 BuildRequires:	pkgconfig(libv4l2)
 BuildRequires:	pkgconfig(samplerate)
 BuildRequires:	pkgconfig(xv)
-BuildRequires:	x264-devel >= 0.142
 Requires:	mjpegtools
 Requires:	soundwrapper
 Requires:	udev
