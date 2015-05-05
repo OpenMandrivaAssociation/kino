@@ -1,4 +1,4 @@
-Summary:	GNOME DV-editing utility
+Summary:	DV-editing utility
 Name:		kino
 Epoch:		2
 Version:	1.3.4
