@@ -2,7 +2,7 @@ Summary:	DV-editing utility
 Name:		kino
 Epoch:		2
 Version:	1.3.4
-Release:	17
+Release:	18
 License:	GPLv2+
 Group:		Video
 Url:		http://www.kinodv.org/
