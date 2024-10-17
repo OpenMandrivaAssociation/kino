@@ -5,7 +5,7 @@ Version:	1.3.4
 Release:	18
 License:	GPLv2+
 Group:		Video
-Url:		http://www.kinodv.org/
+Url:		https://www.kinodv.org/
 Source0:	http://downloads.sourgeforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		kino-1.3.4-fix-desktop-file.patch
 Patch1:		kino-1.3.4-videodev.h.patch
