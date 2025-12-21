@@ -16,6 +16,11 @@ Patch5:		kino-1.3.4-libav-0.8.patch
 Patch6:		kino-1.3.4-link.patch
 Patch7:		kino-automake-1.13.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	desktop-file-utils
 BuildRequires:	imagemagick
 BuildRequires:	intltool
